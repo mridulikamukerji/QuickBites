@@ -1,0 +1,88 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="4dp"
+    android:padding="12dp"
+    android:backgroundTint="#FBF9F9">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Order time -->
+        <TextView
+            android:id="@+id/tvOrderDateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10:45 AM"
+            android:textStyle="bold"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="12dp"
+            android:textSize="25sp" />
+
+        <!-- GridLayout for items and quantities -->
+        <GridLayout
+            android:id="@+id/gridOrderItems"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            android:paddingTop="8dp"
+            android:paddingEnd="8dp">
+
+            <!-- Header row -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Item"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:gravity="center"
+                android:padding="8dp"
+                android:layout_columnWeight="1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Quantity"
+                android:textStyle="bold"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:padding="8dp"
+                android:layout_columnWeight="1" />
+
+            <!-- Dynamically add items here -->
+
+        </GridLayout>
+
+        <!-- Order total -->
+        <TextView
+            android:id="@+id/tvOrderTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Total: ₹150"
+            android:textStyle="bold"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="12dp" />
+
+        <!-- Reorder Button -->
+        <Button
+            android:id="@+id/btnReorder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reorder"
+            android:layout_marginTop="8dp"
+            android:backgroundTint="@color/brown_buttons"
+            android:layout_gravity="center"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="12dp"
+            android:gravity="center" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

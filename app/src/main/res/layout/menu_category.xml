@@ -1,0 +1,44 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/categoryItemFrame"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- Original Content -->
+    <LinearLayout
+        android:id="@+id/categoryItemLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="12dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@color/beige_alternate">
+
+        <ImageView
+            android:id="@+id/itemImage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:gravity="center"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:id="@+id/categoryName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Category"
+            android:textColor="@color/toggle_button_selector"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@color/toggle_button_background"/>
+    </LinearLayout>
+
+    <!-- Selection Overlay -->
+    <View
+        android:id="@+id/categorySelectionOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#66000000"
+        android:visibility="gone" />
+</FrameLayout>

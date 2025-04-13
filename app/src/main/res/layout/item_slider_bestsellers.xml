@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="10dp"
+    android:background="@drawable/bestseller_item_bg">
+
+    <ImageView
+        android:id="@+id/imageViewBestseller"
+        android:layout_width="120dp"
+        android:layout_height="80dp"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="6dp"
+        android:clipToOutline="true" />
+
+    <TextView
+        android:id="@+id/textViewBestseller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bestseller Item"
+        android:textSize="14sp"
+        android:textColor="#444"
+        android:gravity="center"
+        android:layout_marginBottom="4dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDecreaseBestseller"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:icon="@android:drawable/ic_media_previous"
+            android:iconTint="#666"
+            android:backgroundTint="@color/nav_bar" />
+
+        <TextView
+            android:id="@+id/tvCountBestseller"
+            android:layout_width="36dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="14sp"
+            android:textColor="#555"
+            android:layout_marginHorizontal="6dp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnIncreaseBestseller"
+            style="@style/Widget.MaterialComponents.Button.Icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:icon="@android:drawable/ic_input_add"
+            android:iconTint="#666"
+            android:backgroundTint="@color/nav_bar" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="8dp">
+
+    <ImageView
+        android:id="@+id/imageViewSpecial"
+        android:layout_width="160dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/textViewSpecial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Special Item"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="6dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="6dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnDecreaseSpecial"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:backgroundTint="@color/brown_buttons"
+            android:text="−"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/tvCountSpecial"
+            android:layout_width="40dp"
+            android:layout_height="36dp"
+            android:gravity="center"
+            android:text="0"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnIncreaseSpecial"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:backgroundTint="@color/brown_buttons"
+            android:text="+"
+            android:textSize="18sp"/>
+    </LinearLayout>
+</LinearLayout>
