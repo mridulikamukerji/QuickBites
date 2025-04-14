@@ -74,6 +74,13 @@
                     android:horizontalSpacing="8dp"
                     android:stretchMode="columnWidth"
                     android:gravity="center" />
+
+                <Button
+                    android:id="@+id/btnAddItem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#af8456"
+                    android:text="Add Item" />
             </LinearLayout>
         </ScrollView>
 
