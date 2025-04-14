@@ -54,18 +54,37 @@
                 android:visibility="visible" />
         </RelativeLayout>
 
-        <!-- Order Number next to Time -->
-        <TextView
-            android:id="@+id/tvOrderID"
-            android:layout_width="wrap_content"
+        <!-- Order Number and Order Token -->
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Order No: 10202039"
-            android:textStyle="bold"
-            android:textSize="15sp"
-            android:layout_toEndOf="@id/tvOrderDateTime"
-            android:layout_marginStart="12dp"
-            android:gravity="center"
-            android:layout_alignTop="@id/tvOrderDateTime" />
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <TextView
+                android:id="@+id/tvOrderID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order No: 10202039"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:id="@+id/tvOrderToken"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Order Token: 34567"
+                android:textStyle="bold"
+                android:textSize="15sp"
+                android:gravity="center"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@id/tvOrderID"
+                android:layout_marginStart="12dp" />
+        </RelativeLayout>
 
         <!-- GridLayout for items and quantities -->
         <GridLayout
@@ -73,7 +92,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:columnCount="2"
-            android:layout_marginTop="8dp"
             android:orientation="horizontal"
             android:paddingTop="8dp"
             android:paddingEnd="8dp">

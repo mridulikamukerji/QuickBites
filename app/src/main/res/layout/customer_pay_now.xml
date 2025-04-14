@@ -42,11 +42,11 @@
 
                     <!-- Title -->
                     <TextView
-                        android:id="@+id/tvPastOrders"
+                        android:id="@+id/paymentTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Edit Today's Specials"
-                        android:textSize="25sp"
+                        android:text="Choose Payment Method"
+                        android:textSize="20sp"
                         android:textStyle="bold"
                         android:textColor="@android:color/black"
                         android:layout_centerInParent="true" />
@@ -64,23 +64,52 @@
                         android:padding="4dp" />
                 </RelativeLayout>
 
-                <!-- GridView section -->
-                <GridView
-                    android:id="@+id/gridView"
+                <!-- Payment Options (Radio Group) -->
+                <RadioGroup
+                    android:id="@+id/paymentOptionsGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:numColumns="3"
-                    android:verticalSpacing="8dp"
-                    android:horizontalSpacing="8dp"
-                    android:stretchMode="columnWidth"
-                    android:gravity="center" />
+                    android:orientation="vertical">
 
+                    <RadioButton
+                        android:id="@+id/creditCardRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Credit Card"
+                        android:textSize="16sp"
+                        android:padding="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:checked="true"/>
+
+                    <RadioButton
+                        android:id="@+id/googlePayRadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Google Pay"
+                        android:textSize="16sp"
+                        android:padding="8dp"
+                        android:layout_marginBottom="8dp" />
+
+                    <RadioButton
+                        android:id="@+id/cashOnDelivery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cash on Delivery"
+                        android:textSize="16sp"
+                        android:padding="8dp"
+                        android:layout_marginBottom="8dp" />
+                </RadioGroup>
+
+                <!-- Pay Button -->
                 <Button
-                    android:id="@+id/btn"
+                    android:id="@+id/payButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="#af8456"
-                    android:text="Add Item" />
+                    android:text="Pay Now"
+                    android:textSize="16sp"
+                    android:backgroundTint="@color/brown_buttons"
+                    android:textColor="#FFFFFF"
+                    android:padding="16dp" />
             </LinearLayout>
         </ScrollView>
 
