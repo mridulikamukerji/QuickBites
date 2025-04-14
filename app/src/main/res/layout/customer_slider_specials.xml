@@ -31,8 +31,8 @@
 
         <Button
             android:id="@+id/btnDecreaseSpecial"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:backgroundTint="@color/brown_buttons"
             android:text="−"
             android:textSize="18sp"/>
@@ -47,8 +47,8 @@
 
         <Button
             android:id="@+id/btnIncreaseSpecial"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:backgroundTint="@color/brown_buttons"
             android:text="+"
             android:textSize="18sp"/>

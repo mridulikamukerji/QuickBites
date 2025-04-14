@@ -95,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:text="Today's Specials"
                     android:textStyle="bold"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true" />
 
@@ -141,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:text="Bestsellers"
                     android:textStyle="bold"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true" />
 
