@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="16dp"
+    android:background="@color/beige_background">
+
+    <!-- TextView for displaying the order token message -->
+    <TextView
+        android:id="@+id/tvEnterOrderToken"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter Order Token \nfor \nOrder 100"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_marginBottom="24dp" />
+
+    <!-- EditText for entering a 6-digit random pin -->
+    <EditText
+        android:id="@+id/etPin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Enter 6-digit pin"
+        android:inputType="number"
+        android:maxLength="6"
+        android:textSize="16sp"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:importantForAccessibility="yes"
+        android:contentDescription="6-digit pin input field" />
+
+    <!-- Submit Button -->
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:textSize="16sp"
+        android:backgroundTint="@color/brown_buttons"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>
