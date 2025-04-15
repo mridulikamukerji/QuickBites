@@ -34,11 +34,12 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnDecreaseBestseller"
             style="@style/Widget.MaterialComponents.Button.Icon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:icon="@android:drawable/ic_media_previous"
             android:iconTint="#666"
-            android:backgroundTint="@color/nav_bar" />
+            android:backgroundTint="@color/nav_bar"
+            android:contentDescription="Decrease quantity"/>
 
         <TextView
             android:id="@+id/tvCountBestseller"
@@ -53,11 +54,12 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnIncreaseBestseller"
             style="@style/Widget.MaterialComponents.Button.Icon"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:icon="@android:drawable/ic_input_add"
             android:iconTint="#666"
-            android:backgroundTint="@color/nav_bar" />
+            android:backgroundTint="@color/nav_bar"
+            android:contentDescription="Increase quantity"/>
 
     </LinearLayout>
 </LinearLayout>

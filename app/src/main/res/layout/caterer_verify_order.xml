@@ -22,15 +22,14 @@
     <EditText
         android:id="@+id/etPin"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:hint="Enter 6-digit pin"
         android:inputType="number"
         android:maxLength="6"
         android:textSize="16sp"
         android:layout_marginBottom="24dp"
         android:gravity="center"
-        android:importantForAccessibility="yes"
-        android:contentDescription="6-digit pin input field" />
+        android:importantForAccessibility="yes" />
 
     <!-- Submit Button -->
     <Button

@@ -26,7 +26,7 @@
     <EditText
         android:id="@+id/itemNameInput"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:hint="Enter item name"
         android:inputType="textPersonName"
         android:layout_marginTop="16dp" />
@@ -34,7 +34,7 @@
     <EditText
         android:id="@+id/priceInput"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:hint="Enter price of item"
         android:inputType="textPersonName"
         android:layout_marginTop="16dp" />
