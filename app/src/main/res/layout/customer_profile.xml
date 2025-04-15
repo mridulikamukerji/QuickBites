@@ -151,6 +151,17 @@
                         android:contentDescription="Edit Email"
                         android:scaleType="centerInside" />
                 </GridLayout>
+                <Button
+                    android:id="@+id/btnModifyDetails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Save"
+                    android:layout_marginTop="16dp"
+                    android:layout_gravity="center"
+                    android:backgroundTint="@color/brown_buttons"
+                    android:textColor="@android:color/white"
+                    android:visibility="gone"
+                    android:textStyle="bold" />
             </LinearLayout>
         </ScrollView>
 
