@@ -86,6 +86,17 @@
                 android:layout_marginStart="12dp" />
         </RelativeLayout>
 
+        <!-- Dine In Text -->
+        <TextView
+            android:id="@+id/tvOrderType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dine In:"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginStart="12dp" />
+
         <!-- GridLayout for items and quantities -->
         <GridLayout
             android:id="@+id/gridOrderItems"
@@ -93,7 +104,56 @@
             android:layout_height="wrap_content"
             android:columnCount="2"
             android:orientation="horizontal"
-            android:paddingTop="8dp"
+            android:paddingEnd="8dp">
+
+            <!-- Header row -->
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Item"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_row="0"
+                android:layout_column="0"
+                android:gravity="center"
+                android:padding="8dp"
+                android:layout_columnWeight="1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Quantity"
+                android:textStyle="bold"
+                android:layout_row="0"
+                android:layout_column="1"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:padding="8dp"
+                android:layout_columnWeight="1" />
+
+            <!-- Dynamically add items here -->
+
+        </GridLayout>
+
+        <!-- Dine In Text -->
+        <TextView
+            android:id="@+id/tvTakeAwayOrder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Take Away:"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="12dp" />
+
+        <!-- GridLayout for items and quantities -->
+        <GridLayout
+            android:id="@+id/gridOrderItems"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:orientation="horizontal"
             android:paddingEnd="8dp">
 
             <!-- Header row -->
