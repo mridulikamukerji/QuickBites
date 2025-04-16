@@ -28,7 +28,7 @@
                     android:id="@+id/tvWelcome"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Welcome\nName!"
+                    android:text="Welcome to\nQuickBitez!"
                     android:textSize="40sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black" />
@@ -218,11 +218,69 @@
     </LinearLayout>
 
     <!-- Sidebar Menu -->
-    <com.google.android.material.navigation.NavigationView
+    <LinearLayout
+        android:layout_width="250dp"
         android:id="@+id/navigationView"
-        android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:layout_gravity="end"
-        android:background="@color/nav_bar"
-        app:headerLayout="@layout/nav_customer" />
+        android:padding="16dp"
+        android:background="@color/nav_bar">
+
+        <Button
+            android:id="@+id/btnHome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/beige_background"
+            android:textColor="@color/brown_buttons"
+            android:text="Home" />
+
+        <Button
+            android:id="@+id/btnCustomerProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/beige_background"
+            android:textColor="@color/brown_buttons"
+            android:text="My Profile" />
+
+        <Button
+            android:id="@+id/btnFavourites"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/beige_background"
+            android:textColor="@color/brown_buttons"
+            android:text="Favourites" />
+
+        <Button
+            android:id="@+id/btnPastOrders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/beige_background"
+            android:textColor="@color/brown_buttons"
+            android:text="Past Orders" />
+
+        <Button
+            android:id="@+id/btnSendFeedback"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/beige_background"
+            android:textColor="@color/brown_buttons"
+            android:text="Send Feedback" />
+
+        <Button
+            android:id="@+id/btnSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/beige_background"
+            android:textColor="@color/brown_buttons"
+            android:text="Settings" />
+
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:textColor="@color/white"
+            android:backgroundTint="@color/brown_buttons"/>
+    </LinearLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

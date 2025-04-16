@@ -34,6 +34,7 @@ android {
 dependencies {
 
     implementation(libs.glide)
+    implementation(libs.material.v161)
     implementation (libs.material.v1100)
     implementation (libs.material.v150)
     implementation(libs.appcompat)

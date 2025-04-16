@@ -1,6 +1,10 @@
 package com.example.quickbites;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -11,7 +15,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.button.MaterialButton;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -25,18 +31,18 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText customerName, customerEmail, customerPhone, customerPassword;
     private EditText catererName, catererEmail, catererPhone, catererPassword, catererBusinessName, catererBusinessAddress;
 
-    private DatabaseHelper dbHelper;
+    private InlineDatabaseHelper inlineDbHelper;
 
     private static final int PICK_IMAGE_REQUEST = 1;
 
-    private boolean isCustomerSelected = true;
+    private boolean isCustomerSelected = true; // default
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
 
-        dbHelper = new DatabaseHelper(this);
+        inlineDbHelper = new InlineDatabaseHelper(this);
 
         // Initialize Views
         btnCustomer = findViewById(R.id.btnCustomer);
@@ -61,6 +67,7 @@ public class SignUpActivity extends AppCompatActivity {
         catererBusinessName = findViewById(R.id.catererBusinessName);
         catererBusinessAddress = findViewById(R.id.catererBusinessAddress);
 
+        // Toggle logic
         btnCustomer.setOnClickListener(v -> toggleUserType(true));
         btnCaterer.setOnClickListener(v -> toggleUserType(false));
 
@@ -68,11 +75,13 @@ public class SignUpActivity extends AppCompatActivity {
 
         btnRegister.setOnClickListener(v -> handleSignUp());
 
-        toggleUserType(true); // Default to customer
+        toggleUserType(true); // Set default toggle
     }
 
     private void toggleUserType(boolean isCustomer) {
         isCustomerSelected = isCustomer;
+        btnCustomer.setEnabled(!isCustomer);
+        btnCaterer.setEnabled(isCustomer);
         customerFields.setVisibility(isCustomer ? View.VISIBLE : View.GONE);
         catererFields.setVisibility(isCustomer ? View.GONE : View.VISIBLE);
     }
@@ -106,12 +115,13 @@ public class SignUpActivity extends AppCompatActivity {
 
             if (!validateCommonFields(name, email, phone, password)) return;
 
-            long id = dbHelper.insertCustomer(name, email, phone, password, selectedImageUri != null ? selectedImageUri.toString() : null);
+            long id = insertCustomer(name, email, phone, password, selectedImageUri != null ? selectedImageUri.toString() : null);
             if (id != -1) {
                 Toast.makeText(this, "Customer registered successfully!", Toast.LENGTH_SHORT).show();
                 clearFields();
-                Intent startActivity1= new Intent(SignUpActivity.this,LoginActivity.class);
-                startActivity(startActivity1);
+                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                intent.putExtra("userType", "customer");
+                startActivity(intent);
             } else {
                 Toast.makeText(this, "Registration failed. Try again.", Toast.LENGTH_SHORT).show();
             }
@@ -131,12 +141,13 @@ public class SignUpActivity extends AppCompatActivity {
 
             if (!validateCommonFields(name, email, phone, password)) return;
 
-            long id = dbHelper.insertCaterer(name, email, phone, password, businessName, businessAddress, selectedImageUri != null ? selectedImageUri.toString() : null);
+            long id = insertCaterer(name, email, phone, password, businessName, businessAddress, selectedImageUri != null ? selectedImageUri.toString() : null);
             if (id != -1) {
                 Toast.makeText(this, "Caterer registered successfully!", Toast.LENGTH_SHORT).show();
                 clearFields();
-                Intent startActivity2= new Intent(SignUpActivity.this,LoginActivity.class);
-                startActivity(startActivity2);
+                Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                intent.putExtra("userType", "caterer");
+                startActivity(intent);
             } else {
                 Toast.makeText(this, "Registration failed. Try again.", Toast.LENGTH_SHORT).show();
             }
@@ -170,5 +181,74 @@ public class SignUpActivity extends AppCompatActivity {
         catererBusinessAddress.setText("");
         imagePreview.setImageResource(R.drawable.default_profile_picture);
         selectedImageUri = null;
+    }
+
+    // ================== SQLite Code ===================
+
+    private class InlineDatabaseHelper extends SQLiteOpenHelper {
+        private static final String DB_NAME = "QuickBitesDB";
+        private static final int DB_VERSION = 1;
+
+        public InlineDatabaseHelper(Context context) {
+            super(context, DB_NAME, null, DB_VERSION);
+        }
+
+        @Override
+        public void onCreate(SQLiteDatabase db) {
+            db.execSQL("CREATE TABLE IF NOT EXISTS customers (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "name TEXT," +
+                    "email TEXT," +
+                    "phone TEXT," +
+                    "password TEXT," +
+                    "imageUri TEXT)");
+
+            db.execSQL("CREATE TABLE IF NOT EXISTS caterers (" +
+                    "id INTEGER PRIMARY KEY AUTOINCREMENT," +
+                    "name TEXT," +
+                    "email TEXT," +
+                    "phone TEXT," +
+                    "password TEXT," +
+                    "businessName TEXT," +
+                    "businessAddress TEXT," +
+                    "imageUri TEXT)");
+        }
+
+        @Override
+        public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            db.execSQL("DROP TABLE IF EXISTS customers");
+            db.execSQL("DROP TABLE IF EXISTS caterers");
+            onCreate(db);
+        }
+    }
+
+    private long insertCustomer(String name, String email, String phone, String password, String imageUri) {
+        SQLiteDatabase db = inlineDbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("name", name);
+        values.put("email", email);
+        values.put("phone", phone);
+        values.put("password", password);
+        values.put("imageUri", imageUri);
+
+        long id = db.insert("customers", null, values);
+        db.close();
+        return id;
+    }
+
+    private long insertCaterer(String name, String email, String phone, String password, String businessName, String businessAddress, String imageUri) {
+        SQLiteDatabase db = inlineDbHelper.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("name", name);
+        values.put("email", email);
+        values.put("phone", phone);
+        values.put("password", password);
+        values.put("businessName", businessName);
+        values.put("businessAddress", businessAddress);
+        values.put("imageUri", imageUri);
+
+        long id = db.insert("caterers", null, values);
+        db.close();
+        return id;
     }
 }
