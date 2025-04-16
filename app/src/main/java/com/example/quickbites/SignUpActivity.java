@@ -110,6 +110,8 @@ public class SignUpActivity extends AppCompatActivity {
             if (id != -1) {
                 Toast.makeText(this, "Customer registered successfully!", Toast.LENGTH_SHORT).show();
                 clearFields();
+                Intent startActivity1= new Intent(SignUpActivity.this,LoginActivity.class);
+                startActivity(startActivity1);
             } else {
                 Toast.makeText(this, "Registration failed. Try again.", Toast.LENGTH_SHORT).show();
             }
@@ -133,6 +135,8 @@ public class SignUpActivity extends AppCompatActivity {
             if (id != -1) {
                 Toast.makeText(this, "Caterer registered successfully!", Toast.LENGTH_SHORT).show();
                 clearFields();
+                Intent startActivity2= new Intent(SignUpActivity.this,LoginActivity.class);
+                startActivity(startActivity2);
             } else {
                 Toast.makeText(this, "Registration failed. Try again.", Toast.LENGTH_SHORT).show();
             }

@@ -59,14 +59,14 @@ public class LoginActivity extends AppCompatActivity {
             if (isCustomer) {
                 if (isValidCustomer(email, password)) {
                     Toast.makeText(this, "Customer Login Successful!", Toast.LENGTH_SHORT).show();
-                    // startActivity(new Intent(this, CustomerDashboardActivity.class));
+                    startActivity(new Intent(this, CustomerDashboard.class));
                 } else {
                     Toast.makeText(this, "Invalid customer credentials!", Toast.LENGTH_SHORT).show();
                 }
             } else {
                 if (isValidCaterer(email, password)) {
                     Toast.makeText(this, "Caterer Login Successful!", Toast.LENGTH_SHORT).show();
-                    // startActivity(new Intent(this, CatererDashboardActivity.class));
+                    startActivity(new Intent(this, CatererDashboard.class));
                 } else {
                     Toast.makeText(this, "Invalid caterer credentials!", Toast.LENGTH_SHORT).show();
                 }
