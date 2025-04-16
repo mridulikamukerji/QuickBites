@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace = "com.example.quickbites"
-    compileSdk = 31
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.quickbites"
         minSdk = 30
-        targetSdk = 31
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
