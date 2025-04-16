@@ -2,9 +2,15 @@ package com.example.quickbites;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -31,6 +37,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_CAT_BUSINESS_ADDRESS = "business_address";
     public static final String COLUMN_CAT_IMAGE = "profile_picture";
 
+    // Bestsellers Table
+    private static final String TABLE_BESTSELLERS = "Bestsellers";
+    private static final String COLUMN_BESTSELLER_ID = "id";
+    private static final String COLUMN_BESTSELLER_IMAGE = "image";
+    private static final String COLUMN_BESTSELLER_NAME = "name";
+
+    // Customer Specials Table
+    private static final String TABLE_CUSTOMER_SPECIALS = "CustomerSpecials";
+    private static final String COLUMN_SPECIAL_ID = "id";
+    private static final String COLUMN_SPECIAL_IMAGE = "image";
+    private static final String COLUMN_SPECIAL_NAME = "name";
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -55,8 +73,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + COLUMN_CAT_BUSINESS_ADDRESS + " TEXT, "
                 + COLUMN_CAT_IMAGE + " TEXT)";
 
+        String CREATE_BESTSELLERS_TABLE = "CREATE TABLE " + TABLE_BESTSELLERS + " ("
+                + COLUMN_BESTSELLER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMN_BESTSELLER_IMAGE + " BLOB, "
+                + COLUMN_BESTSELLER_NAME + " TEXT)";
+
+        String CREATE_CUSTOMER_SPECIALS_TABLE = "CREATE TABLE " + TABLE_CUSTOMER_SPECIALS + " ("
+                + COLUMN_SPECIAL_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + COLUMN_SPECIAL_IMAGE + " BLOB, "
+                + COLUMN_SPECIAL_NAME + " TEXT)";
+
         db.execSQL(CREATE_CUSTOMERS_TABLE);
         db.execSQL(CREATE_CATERERS_TABLE);
+        db.execSQL(CREATE_BESTSELLERS_TABLE);
+        db.execSQL(CREATE_CUSTOMER_SPECIALS_TABLE);
     }
 
     @Override
@@ -64,6 +94,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Drop older tables
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMERS);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CATERERS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_BESTSELLERS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMER_SPECIALS);
         onCreate(db);
     }
 
@@ -105,6 +137,69 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return id;
     }
+
+    // Fetch All Bestsellers (Ensure the images are decoded as Bitmap)
+    public List<BestsellerItem> getAllBestsellers() {
+        List<BestsellerItem> itemList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_BESTSELLERS, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                byte[] image = cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_BESTSELLER_IMAGE));
+                Bitmap bitmapImage = BitmapFactory.decodeByteArray(image, 0, image.length);
+                String name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_BESTSELLER_NAME));
+
+                // Add item to list
+                itemList.add(new BestsellerItem(name, bitmapImage));
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return itemList;
+    }
+
+    // Fetch All Customer Specials (with Bitmap conversion)
+    public List<SpecialItem> getAllCustomerSpecials() {
+        List<SpecialItem> itemList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_CUSTOMER_SPECIALS, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                byte[] image = cursor.getBlob(cursor.getColumnIndexOrThrow(COLUMN_SPECIAL_IMAGE));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_SPECIAL_NAME));
+
+                // Convert byte[] to Bitmap
+                Bitmap bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
+
+                // Add item to list
+                itemList.add(new SpecialItem(bitmap, name, 0));  // Add count as needed
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        return itemList;
+    }
+
+    // Insert Customer Special
+    public boolean insertCustomerSpecial(byte[] image, String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_SPECIAL_IMAGE, image);
+        values.put(COLUMN_SPECIAL_NAME, name);
+        long result = db.insert(TABLE_CUSTOMER_SPECIALS, null, values);
+        return result != -1;
+    }
+
+    // Insert Bestseller Item
+    public boolean insertBestsellerItem(byte[] image, String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_BESTSELLER_IMAGE, image);
+        values.put(COLUMN_BESTSELLER_NAME, name);
+        long result = db.insert(TABLE_BESTSELLERS, null, values);
+        return result != -1;
+    }
+
     // Check if customer exists with given email and password
     public boolean checkCustomerCredentials(String email, String password) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -122,7 +217,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] selectionArgs = {email, password};
         return db.rawQuery(query, selectionArgs).getCount() > 0;
     }
-
-
 }
-
